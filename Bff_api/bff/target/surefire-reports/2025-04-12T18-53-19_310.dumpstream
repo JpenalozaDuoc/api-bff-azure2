@@ -1,0 +1,5 @@
+# Created at 2025-04-12T18:53:19.479
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Personal\Estudios\2025_201 DESARROLLO CLOUD NATIVE II_001A\WebGestion\Bff_api\bff\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
