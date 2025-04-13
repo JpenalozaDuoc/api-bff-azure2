@@ -25,9 +25,9 @@ public class BffController {
     @Value("${azure.function.getAllRolesUrl}")
     private String getAllRolesUrl;
     
-    /*@Value("${azure.function.getAllUsersUrl}")
-    private String getAllUsersUrl;
-    */
+    @Value("${azure.function.getRoleByIdUrl}")
+    private String getRoleByIdUrl;
+    
 
     @Value("${azure.function.updateRoleUrl}")
     private String updateRoleUrl;
@@ -65,6 +65,24 @@ public class BffController {
             return ResponseEntity.status(500).body("Error al obtener roles.");
         }
     }
+    // Endpoint que llama a la función que obtiene un rol por id
+    @GetMapping("/getRole/{id}")
+    public ResponseEntity<?> getRoleById(@PathVariable String id) {
+        try {
+            // Concatenamos el ID del rol al final de la URL
+            String urlWithId = getRoleByIdUrl.replace("{id}", id);  // Reemplaza {id} con el valor real
+            
+            // Loggear la URL para verificar
+            System.out.println("URL construida: " + urlWithId);
+
+            // Realizamos la solicitud GET para obtener el rol
+            return restTemplate.getForEntity(urlWithId, String.class);
+        } catch (Exception e) {
+            // En caso de error, devolvemos una respuesta con el código 500
+            return ResponseEntity.status(500).body("Error al obtener el rol.");
+        }
+    }
+
 
      // Endpoint para actualizar un rol
     @PutMapping("/updateRole/{id}")
